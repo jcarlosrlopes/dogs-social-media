@@ -12,7 +12,7 @@ const FeedModal = ({ photo, setModalPhoto }) => {
    React.useEffect(async () => {
       const { url, options } = PHOTO_GET(photo.id);
 
-      const { json } = await request(url, options);
+      await request(url, options);
    }, [photo, request]);
 
    const handleOutsideClick = (event) => {
