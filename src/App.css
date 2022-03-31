@@ -90,3 +90,18 @@ a {
       transform: initial;
    }
 }
+
+/* Needed to keep the footer always below the main content */
+.App {
+   display: flex;
+   flex-direction: column;
+   min-height: calc(100vh + 10rem);
+}
+
+.AppBody {
+   flex: 1;
+}
+
+.VictoryContainer {
+   height: initial;
+}
