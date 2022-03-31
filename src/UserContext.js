@@ -29,12 +29,15 @@ export const UserStorage = ({ children }) => {
 
          const response = await fetch(url, options);
 
-         if (!response.ok) throw new Error(`Error: ${response.statusText}`);
-
-         const { token } = await response.json();
-         window.localStorage.setItem("token", token);
-         await getUser(token);
-         navigate("/conta");
+         if (response.status != 200) {
+            const { message } = await response.json();
+            throw new Error(`Error: ${message ?? response.statusText}`);
+         } else {
+            const { token } = await response.json();
+            window.localStorage.setItem("token", token);
+            await getUser(token);
+            navigate("/conta");
+         }
       } catch (err) {
          setError(err.message);
          setIsLogged(false);
