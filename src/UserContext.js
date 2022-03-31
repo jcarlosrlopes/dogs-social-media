@@ -29,7 +29,7 @@ export const UserStorage = ({ children }) => {
 
          const response = await fetch(url, options);
 
-         if (response.status != 200) {
+         if (response.status !== 200) {
             const { message } = await response.json();
             throw new Error(`Error: ${message ?? response.statusText}`);
          } else {

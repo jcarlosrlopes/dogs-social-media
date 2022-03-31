@@ -1,11 +1,12 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { PASSWORD_RESET } from "../../api";
 import useFetch from "../../Hooks/useFetch";
 import useForm from "../../Hooks/useForm";
 import Button from "../Forms/Button";
 import Input from "../Forms/Input";
 import Error from "../Helper/Error";
+import Head from "../Helper/Head";
 
 const LoginPasswordReset = () => {
    const [key, setKey] = React.useState("");
@@ -34,13 +35,14 @@ const LoginPasswordReset = () => {
             password: password.value,
          });
 
-         const { response, json } = await request(url, options);
+         await request(url, options);
       }
    };
 
    if (data) {
       return (
          <div>
+            <Head title="Senha atualizada" />
             <h3 style={{ color: "#4c1", marginBottom: "1rem" }}>
                Senha atualizada com sucesso!
             </h3>
@@ -50,6 +52,7 @@ const LoginPasswordReset = () => {
    } else {
       return (
          <div>
+            <Head title="Resete a senha" />
             <h1 className="title">Resete sua senha</h1>
             <form onSubmit={handleSubmit}>
                <Input
